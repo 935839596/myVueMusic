@@ -1,23 +1,30 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <div class="tab">
+      <router-link class="tab-item" to="/myMusic">我的</router-link>
+      <router-link class="tab-item" to="/search">搜索</router-link>
+      <router-link class="tab-item" to="more">更多</router-link>
+    </div>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'app'
-}
+  export default {
+    name: 'app'
+  }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="less">
+  .tab {
+    display: flex;
+    .tab-item {
+      flex: 1;
+      color: red;
+      text-align: center;
+      height:5rem;
+      line-height:5rem;
+      font-size: 2rem;
+    }
+  }
 </style>
