@@ -23,6 +23,24 @@ var proxyTable = config.dev.proxyTable
 var app = express()
 var compiler = webpack(webpackConfig)
 
+/*模拟获取后台数据*/
+   var appData = require('../data.json');
+   var musicList = appData.recommend;
+
+   var apiRoutes = express.Router();
+
+   app.use('/api',apiRoutes);
+
+
+
+   apiRoutes.get('/musicList',function (req,res) {
+     res.json({
+       ret:0,
+       musicList: musicList
+     })
+   })
+/*模拟获取后台数据*/
+
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
   quiet: true
