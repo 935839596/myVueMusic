@@ -11,5 +11,7 @@
 </script>
 
 <style>
-
+  .search{
+    flex: 8;
+  }
 </style>

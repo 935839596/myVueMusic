@@ -14,9 +14,9 @@ const store = new Vuex.Store({
     musicPlayState: false
   },
   mutations: {
-    musicPlay (music) {
-      state.musicPlay = music;
-      state.musicPlay = true;
+    musicPlay (state, payload) {
+      state.musicPlay = payload.music;
+      state.musicPlayState = true;
     },
     musicPlayOrStop () {
       state.musicPlayState = !state.musicPlayState;

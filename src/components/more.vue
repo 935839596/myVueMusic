@@ -11,5 +11,7 @@
 </script>
 
 <style>
-
+  .more{
+    flex: 8;
+  }
 </style>

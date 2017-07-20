@@ -1,17 +1,25 @@
 <template>
   <div id="app">
-    <div class="musicHeader">
-      <div class="top">
-        I Want You
+    <div class="wrap">
+      <!--顶部-->
+      <div class="musicHeader">
+        <div class="top">
+          I Want You
+        </div>
+        <div class="tab">
+          <router-link class="tab-item" to="/myMusic">我的</router-link>
+          <router-link class="tab-item" to="/search">搜索</router-link>
+          <router-link class="tab-item" to="more">更多</router-link>
+        </div>
       </div>
-      <div class="tab">
-        <router-link class="tab-item" to="/myMusic">我的</router-link>
-        <router-link class="tab-item" to="/search">搜索</router-link>
-        <router-link class="tab-item" to="more">更多</router-link>
-      </div>
+
+      <!--歌曲列表-->
+      <router-view></router-view>
+
+      <!--底部播放栏-->
+      <bottom></bottom>
+
     </div>
-    <router-view></router-view>
-    <bottom></bottom>
   </div>
 </template>
 
@@ -32,37 +40,39 @@
   }
 </style>
 <style lang="less" scoped>
-  .musicHeader{
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 100;
-    /*flex: 1;*/
-  }
-  .top {
-    text-align: center;
-    background-color: black;
-    color: yellow;
-    line-height: 5rem;
-    font-size: 2rem;
+  #app, .wrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 
-  .tab {
-    display: flex;
-    background: #000;
-    .tab-item {
-      flex: 1;
-      /*color: red;*/
+  .musicHeader {
+    flex: 1;
+    .top {
       text-align: center;
+      background-color: black;
       color: yellow;
-      text-decoration: none;
-      height: 5rem;
       line-height: 5rem;
       font-size: 2rem;
     }
+    .tab {
+      display: flex;
+      background: #000;
+      .tab-item {
+        flex: 1;
+        /*color: red;*/
+        text-align: center;
+        color: yellow;
+        text-decoration: none;
+        height: 5rem;
+        line-height: 5rem;
+        font-size: 2rem;
+        &.router-link-active{
+          border-bottom: 5px solid yellow;
+        }
+      }
+    }
   }
 
-  .musicBody{
-    padding-top: 10rem;
-  }
 </style>
