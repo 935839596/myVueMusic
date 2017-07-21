@@ -4,8 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Vuex from 'Vuex'
+import axios from 'axios'
+import VueAxios from 'vue-axios';
 
 Vue.use(Vuex)
+Vue.use(VueAxios,axios)
 
 /*vuex保存音乐播放状态和播放的歌曲*/
 const store = new Vuex.Store({

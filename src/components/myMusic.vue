@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import axios from 'axios'
+  import commonJsFn from '../commonJSFunction/commonFunction'
   export default {
     data () {
       return {
@@ -20,11 +20,33 @@
       }
     },
     mounted () {
-      axios.get('/api/musicList').then((response) => {
+      this.axios.get('/static/musicList').then((response) => {
         this.musicList = response.data.musicList;
       }).catch(error => {
         console.log(error);
       });
+
+      var url = '/db/search',
+          params = {
+            q: "周杰伦",
+            count: 10,
+            tag: "林",
+            start: 0
+          }
+
+      this.axios.get(commonJsFn.getReqUrl(url,params)).then((response) => {
+        console.log(response.data);
+      })
+
+      url = 'api/music?type=2&size=10';
+      params = {
+        type: 2,
+        size: 10,
+        offset: 0
+      };
+      this.axios.get(url).then( response => {
+        console.log(response.data);
+      })
     },
     methods: {
       deleteMusic(index){
