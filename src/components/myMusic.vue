@@ -39,7 +39,6 @@
         this.deleteSong(song)
       },
       _getMusicList() {
-        console.log(this.topid)
         this.hasMore = true
         getMusicList(this.song_begin,this.song_num,this.topid).then( (res) => {
           this.songs = this._normalizeSongs(res.songlist)
