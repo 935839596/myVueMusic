@@ -45,7 +45,11 @@
       _getHotKey(){
         getHotKey().then( (res) => {
           if(res.code === 0){
-            this.hotkey = res.data.hotkey.slice(0, 10)
+            let start = Math.floor(Math.random() * (res.data.hotkey).length - 1)
+            this.hotkey = res.data.hotkey.slice(start , start + 9)
+            this.hotkey.unshift({
+              k: '周杰伦'
+            })
           }
         })
       },

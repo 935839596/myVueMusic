@@ -14,6 +14,7 @@
 </template>
 
 <script>
+  import {mapGetters} from 'vuex'
   const progressBtnWidth = 16
   export default {
     props:{
@@ -21,6 +22,11 @@
         type: Number,
         default: 0
       }
+    },
+    computed: {
+      ...mapGetters([
+          'fullScreen'
+      ])
     },
     created() {
       this.touch = {}
@@ -59,6 +65,10 @@
     },
     watch: {
       percent(newPercent){
+        //如果不是全屏的话，下面的clientWidth会变成0
+        if(!this.fullScreen){
+          return
+        }
         if(newPercent >= 0 && !this.touch.initiated) {
           const barWidth = this.$refs.progressBar.clientWidth - progressBtnWidth
           const offsetWidth = newPercent * barWidth
