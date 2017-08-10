@@ -4,18 +4,15 @@
 import jsonp from '../common/js/jsonp'
 
 
-export function getMusicList() {
-  return getRandomId().then( (id) => {
-    return id
-  }).then( (topid) => {
+export function getMusicList(song_begin,song_num,topid) {
     const url = 'https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg'
     const data = {
       tpl: 3,
       page: 'detail',
       topid,
       type: 'top',
-      song_begin: 0,
-      song_num: 15,
+      song_begin,
+      song_num,
       g_tk: 5381,
       loginUin:0,
       hostUin:0,
@@ -32,7 +29,6 @@ export function getMusicList() {
     }
     return jsonp(url,data,options)
 
-  })
 
 
 }
@@ -57,7 +53,7 @@ export function getMusicList() {
 }
 
 //获得随机巅峰榜id
-function getRandomId(){
+export function getRandomId(){
   let topIdList = []
   return getTopList().then( (res) => {
     let toplist = res.data.topList.slice();
@@ -69,5 +65,4 @@ function getRandomId(){
     let len = list.length;
     return (list[Math.floor(Math.random() * (len - 1 ))]) ;
   })
-
 }

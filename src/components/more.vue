@@ -1,6 +1,6 @@
 <template>
   <div class="more">
-    this is more.
+    <img src="../image/you.jpg" alt="">
   </div>
 </template>
 
@@ -10,8 +10,13 @@
   }
 </script>
 
-<style>
+<style lang="less">
   .more{
     flex: 8;
+    img{
+      width: 80%;
+      margin: 2rem;
+    }
+
   }
 </style>

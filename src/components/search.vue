@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="search-result" v-show="query">
-      <suggest :query="query"></suggest>
+      <suggest :query="query" ref="suggest"></suggest>
     </div>
   </div>
 
@@ -51,10 +51,16 @@
       },
       addQuery(query){
         this.$refs.searchBox.setQuery(query)
+      },
+      handle(){
+        console.log(112)
       }
     },
     created() {
       this._getHotKey();
+    },
+    mounted() {
+
     }
   }
 </script>
@@ -82,7 +88,7 @@
     }
     .search-result{
       margin: 0 1.2rem;
-      overflow: auto;
+      height: 100%;
     }
   }
 </style>

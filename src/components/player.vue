@@ -1,5 +1,5 @@
 <template>
-  <div class="player" v-show="playlist.length > 0">
+  <div class="player" v-show="this.initPlaylist">
     <div class="normalPlayer" v-show="fullScreen">
       <div class="background">
         <img :src="currentSong.image" alt="">
@@ -77,7 +77,8 @@
         'fullScreen',
         'currentSong',
         'playing',
-        'playlist'
+        'playlist',
+        'initPlaylist'
       ])
     },
     methods: {
@@ -233,7 +234,7 @@
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
-        font-size: 1rem;
+        font-size: 1.3rem;
         line-height: 2rem;
         height: 2rem;
       }

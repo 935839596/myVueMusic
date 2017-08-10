@@ -1,6 +1,6 @@
 <template>
-  <div class="musicList" v-show="songs" ref="songList">
-    <ul>
+  <div class="musicList" v-show="songs" ref="songList" @scroll="emitScroll">
+    <ul ref="songUl">
       <li class="musicItem" v-for="(song,index) in songs" @click="selectItem(song,index)">
         <img :src="song.image" alt="">
         <div class="name">
@@ -40,6 +40,21 @@
       },
       delSong(song,index){
         this.$emit('delSong',song,index)
+      },
+      emitScroll(){
+        var songUl = this.$refs.songUl;
+        var songList = this.$refs.songList;
+
+        var clientHeight = songList.clientHeight //可视高度
+        var scrollTop = songList.scrollTop;//滚动距离
+
+        var height = songUl.offsetHeight; //总高度
+
+//        console.log(clientHeight,scrollTop,height)
+        if(clientHeight + scrollTop + 2 > height){
+
+          this.$emit('scrollDone')
+        }
       }
     },
     mounted(){
@@ -59,14 +74,13 @@
     overflow: auto;
     .musicItem {
       display: flex;
-      border-bottom: 1px solid grey;
+      border-bottom: 1px solid rgba(0,0,0,.2);
       line-height: 3.5rem;
       height: 3.5rem;
-      /* flex: 0 0 4rem; */
       align-items: center;
       & > img {
-        max-width: 2.5rem;
-        max-height: 2.5rem;
+        max-width: 3rem;
+        max-height: 3rem;
         margin-left: 1rem;
         margin-right: .5rem;
         vertical-align: middle;
@@ -84,7 +98,7 @@
         flex: 1;
         .musicName{
           color: #000;
-          font-size: .8rem;
+          font-size: 1rem;
         }
         .singerName{
           font-size: .7rem;

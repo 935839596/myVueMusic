@@ -15,6 +15,9 @@ const mutations = {
   },
   [types.SET_FULLSCREEN](state, flag) {
     state.fullScreen = flag
+  },
+  [types.SET_INITPLAYLIST](state, flag) {
+    state.initPlaylist = flag
   }
 }
 

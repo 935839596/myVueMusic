@@ -72,6 +72,7 @@
       color: yellow;
       line-height: 2rem;
       font-size: 1rem;
+      display: none;
     }
     .tab {
       display: flex;
@@ -81,9 +82,9 @@
         text-align: center;
         color: yellow;
         text-decoration: none;
-        height: 1.5rem;
-        line-height: 1.5rem;
-        font-size: .8rem;
+        height: 2.5rem;
+        line-height: 2.5rem;
+        font-size: 1rem;
         &.router-link-active{
           border-bottom: .15rem solid yellow;
         }

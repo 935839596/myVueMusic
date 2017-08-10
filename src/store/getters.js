@@ -11,3 +11,5 @@ export const currentIndex = state => state.currentIndex
 export const  currentSong = state => state.playlist[state.currentIndex] || {}
 
 export const fullScreen = state => state.fullScreen
+
+export const initPlaylist = state => state.initPlaylist
