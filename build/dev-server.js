@@ -13,6 +13,8 @@ var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = require('./webpack.dev.conf')
 var https = require('https');
 var http = require('http');
+var async = require('asyncawait/async')
+var await = require('asyncawait/await')
 
 
 
@@ -109,33 +111,26 @@ apiRoutes.get('/api/music', function (req, res) {
   })
 
   getMusicList.then( data => {
-    let musicList = [],
-      testlist = [];
+    let musicList = [];
     data = JSON.parse(data).song_list;
-    let music = getMusic(data[0].song_id);
+    // console.log(data)
+    let songids = [];
+    for( i in data){
+      songids.push(data[i].song_id)
+    }
+    return songids;
+  }).then( songids => {
+    return Promise.all( songids.map((songid) => {
+      return getMusic(songid).then( music => JSON.parse(music));
+    }))
+  }).then(list => {
+    // console.log(list[0].bitrate.file_link)
     res.json({
-      alone: music
+      ret: list
     })
-    //  for(let i in data){
-    //    testlist.push({name:'lin'});
-    //   getMusic(data[0].song_id).then( music => {
-    //     musicList.push(JSON.parse(music));
-    //   })
-    //   // musicList.push(getMusic(data[0].songid))
-    //  };
-    // res.json({
-    //   musicList: musicList,
-    //   testlist: testlist
-    // });
-  }).then( () => {
+  })
 
-  });
 
-  /*getMusic(544606704).then( music => {
-      res.json({
-        ret: JSON.parse(music)
-      })
-  })*/
 
   //再通过songId，来获取音乐信息；
   function getMusic(songid) {
@@ -144,8 +139,9 @@ apiRoutes.get('/api/music', function (req, res) {
         method: 'baidu.ting.song.playAAC',
         songid: songid
       };
+
     let result = '';
-   let music =  new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       http.get(getUrl(url,params), (response) => {
         response.on('data', data => {
           result += data;
@@ -155,7 +151,7 @@ apiRoutes.get('/api/music', function (req, res) {
         });
       })
     })
-    music.then( (musicI) => (JSON.parse(musicI)) );
+
   }
 
 

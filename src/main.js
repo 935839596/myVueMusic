@@ -3,29 +3,12 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import Vuex from 'Vuex'
 import axios from 'axios'
-import VueAxios from 'vue-axios';
+import VueAxios from 'vue-axios'
+import store from './store'
 
-Vue.use(Vuex)
+
 Vue.use(VueAxios,axios)
-
-/*vuex保存音乐播放状态和播放的歌曲*/
-const store = new Vuex.Store({
-  state: {
-    musicPlay: {},
-    musicPlayState: false
-  },
-  mutations: {
-    musicPlay (state, payload) {
-      state.musicPlay = payload.music;
-      state.musicPlayState = true;
-    },
-    musicPlayOrStop () {
-      state.musicPlayState = !state.musicPlayState;
-    }
-  }
-})
 
 Vue.config.productionTip = false
 

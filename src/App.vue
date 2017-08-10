@@ -14,21 +14,39 @@
       </div>
 
       <!--歌曲列表-->
-      <router-view></router-view>
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
 
       <!--底部播放栏-->
-      <bottom></bottom>
+      <player></player>
 
     </div>
   </div>
 </template>
 
 <script>
-  import bottom from './components/bottom'
+  import player from './components/player'
   export default {
     name: 'app',
     components: {
-      bottom
+      player
+    },
+    data(){
+      return {
+//        music:{}
+      }
+    },
+    computed:{
+      music(){
+        return this.$store.state.music
+      }
+    },
+    methods:{
+
+    },
+    beforeCreate(){
+
     }
   }
 </script>
@@ -48,28 +66,26 @@
   }
 
   .musicHeader {
-    flex: 1;
     .top {
       text-align: center;
-      background-color: black;
+      background-color: #333;
       color: yellow;
-      line-height: 5rem;
-      font-size: 2rem;
+      line-height: 2rem;
+      font-size: 1rem;
     }
     .tab {
       display: flex;
-      background: #000;
+      background: #333;
       .tab-item {
         flex: 1;
-        /*color: red;*/
         text-align: center;
         color: yellow;
         text-decoration: none;
-        height: 5rem;
-        line-height: 5rem;
-        font-size: 2rem;
+        height: 1.5rem;
+        line-height: 1.5rem;
+        font-size: .8rem;
         &.router-link-active{
-          border-bottom: 5px solid yellow;
+          border-bottom: .15rem solid yellow;
         }
       }
     }
